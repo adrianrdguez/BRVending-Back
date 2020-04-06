@@ -11,9 +11,13 @@ module.exports = {
   deleteOneOrderByClient
 }
 
-function getAllclients() {
-
+function getAllclients(req, res) {
+  ClientModel
+    .find()
+    .then(clients => res.json(clients))
+    .catch((err) => handleError(err, res))
 };
+
 function getOneclient() {
 
 };
