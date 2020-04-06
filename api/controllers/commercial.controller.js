@@ -1,36 +1,36 @@
-const UserModel = require('../models/users.model')
+const CommercialModel = require('../models/commercial.model')
 const { handleError } = require('../utils')
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  deleteUserById,
-  updateUser
+  getAllCommercial,
+  getCommercialById,
+  deleteCommercialById,
+  updateCommercial
 }
 
-function getAllUsers (req, res) {
-  UserModel
+function getAllCommercial(req, res) {
+  CommercialModel
     .find()
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
 
-function getUserById (req, res) {
-  UserModel
+function getCommercialById(req, res) {
+  CommercialModel
     .findById(req.params.id)
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
 
-function deleteUserById (req, res) {
-  UserModel
+function deleteCommercialById(req, res) {
+  CommercialModel
     .remove({ _id: req.params.id })
     .then(response => res.json(response))
     .catch(err => handleError(err, res))
 }
 
-function updateUser (req, res) {
-  UserModel
+function updateCommercial(req, res) {
+  CommercialModel
     .findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true

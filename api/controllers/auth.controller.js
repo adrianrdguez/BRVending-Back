@@ -1,4 +1,4 @@
-const UserModel = require('../models/users.model')
+const CommercialModel = require('../models/commercial.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { handleError } = require('../utils')
@@ -7,52 +7,48 @@ module.exports = {
   signup,
   login
 }
-
-function signup (req, res) {
-  const hashedPwd = bcrypt.hashSync(req.body.user_password, 10)
-  const userBody = {
-    name: req.body.user_name,
-    email: req.body.user_email,
+function signup(req, res) {
+  const hashedPwd = bcrypt.hashSync(req.body.commercial_password, 10)
+  const commercialBody = {
+    userName: req.body.commercial_userName,
+    email: req.body.commercial_email,
     password: hashedPwd
   }
-
-  UserModel
-    .create(userBody)
+  CommercialModel
+    .create(commercialBody)
     .then(() => {
-      const userData = { username: req.body.user_name, email: req.body.user_email }
+      const commercialData = { username: req.body.commercial_userName, email: req.body.commercial_email }
 
       const token = jwt.sign(
-        userData,
+        commercialData,
         process.env.SECRET, // TAKE SECRET KEY FROM .ENV
         { expiresIn: '1w' }
       )
 
-      return res.json({ token: token, ...userData })
+      return res.json({ token: token, ...commercialData })
     })
     .catch((err) => {
       res.status(403).json({ error: err })
     })
 }
+function login(req, res) {
+  CommercialModel
+    .findOne({ email: req.body.commercial_email })
+    .then(commercial => {
+      if (!commercial) { return res.json({ error: 'wrong email' }) }
 
-function login (req, res) {
-  UserModel
-    .findOne({ email: req.body.user_email })
-    .then(user => {
-      if (!user) { return res.json({ error: 'wrong email' }) }
-
-      bcrypt.compare(req.body.user_password, user.password, (err, result) => {
+      bcrypt.compare(req.body.commercial_password, commercial.password, (err, result) => {
         if (err) { handleError(err) }
-        if (!result) { return res.json({ error: `wrong password for ${req.body.user_email}` }) }
+        if (!result) { return res.json({ error: `wrong password for ${req.body.commercial_email}` }) }
 
-        const userData = { username: user.name, email: user.email }
+        const commercialData = { username: commercial_userName, email: commercial.email }
 
         const token = jwt.sign(
-          userData,
+          commercialData,
           process.env.SECRET,
           { expiresIn: '1h' }
         )
-
-        return res.json({ token: token, ...userData })
+        return res.json({ token: token, ...commercialData })
       })
     })
     .catch(err => handleError(err, res))
