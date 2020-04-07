@@ -50,7 +50,8 @@ function updateClient (req, res) {
 function getAllOrdersByClient (req, res) {
   Client
     .findById(req.params.clientId)
-    .then((client) => res.json(client.orders))
+    .populate('orders')
+    .then((client) => res.json({orders: client.orders }))
     .catch((err) => handleError(err, res))
 }
 
