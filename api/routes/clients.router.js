@@ -1,21 +1,18 @@
 const router = require('express').Router()
 
 const {
+  createClient,
   getAllclients,
   getOneclient,
-  createClient,
   deleteClient,
-  getAllOrdersByClient,
-  getOneOrderByClient,
-  deleteOneOrderByClient
+  updateClient
+
 } = require('../controllers/clients.controller')
 
-router.get('/', getAllclients)
-router.get('/:clientsId', getOneclient)
 router.post('/', createClient)
+router.get('/', getAllclients)
+router.get('/:clientId', getOneclient)
 router.delete('/:clientId', deleteClient)
-router.get('/clientsId/:orders', getAllOrdersByClient)
-router.get('/clientsId/:orders/:ordersId', getOneOrderByClient)
-router.delete('/clientsId/:orders/:ordersId', deleteOneOrderByClient)
+router.put('/:clientId', updateClient)
 
 module.exports = router

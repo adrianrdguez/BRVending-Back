@@ -9,13 +9,15 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  category: {
-    type: String,
+  category: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ProductCategories',
     required: true
-  },
-  category: {
-    type: String,
-    required: false
+  }],
+  photo_url: String,
+  createdAt: {
+    type: Number,
+    default: Date.now()
   },
   stock: {
     type: String,

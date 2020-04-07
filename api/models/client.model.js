@@ -1,7 +1,16 @@
 const mongoose = require('mongoose')
 
 const clientSchema = new mongoose.Schema({
+  shop_name: String,
+  business_name: {
+    type: String,
+    required: true
+  },
   business_manager: {
+    type: String,
+    required: true
+  },
+  VATIN: {
     type: String,
     required: true
   },
@@ -14,15 +23,10 @@ const clientSchema = new mongoose.Schema({
       }
     }
   },
-  shop_name: String,
-  business_name: {
+  payment_method: {
     type: String,
-    required: true
-  },
-  way_to_pay: {
-    type: String,
-    enum: ['credit', 'count'],
-    default: 'count'
+    enum: ['credit', 'cash'],
+    default: 'cash'
   },
   opening_hours: {
     type: String,
@@ -30,10 +34,6 @@ const clientSchema = new mongoose.Schema({
   },
   zipcode: {
     type: Number,
-    required: true
-  },
-  VATIN: {
-    type: String,
     required: true
   },
   mobile: {

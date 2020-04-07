@@ -1,4 +1,4 @@
-const ClientModel = require('../models/client.model.js')
+const Client = require('../models/client.model.js')
 const { handleError } = require('../utils')
 
 module.exports = {
@@ -6,29 +6,56 @@ module.exports = {
   getOneclient,
   createClient,
   deleteClient,
+  updateClient,
   getAllOrdersByClient,
-  getOneOrderByClient,
-  deleteOneOrderByClient
+  getOneOrderByClient
 }
 
 function getAllclients (req, res) {
-  ClientModel.find()
+  Client
+    .find()
     .then((clients) => res.json(clients))
     .catch((err) => handleError(err, res))
 }
 
-function getOneclient () {}
-
-function createClient (req, res) {
-  ClientModel.create(req.body)
+function getOneclient (req, res) {
+  Client
+    .findById(req.params.clientId)
     .then((client) => res.json(client))
     .catch((err) => handleError(err, res))
 }
 
-function deleteClient () {}
+function createClient (req, res) {
+  Client.create(req.body)
+    .then((clients) => res.json(clients))
+    .catch((err) => handleError(err, res))
+}
 
-function getAllOrdersByClient () {}
+function deleteClient (req, res) {
+  Client
+    .deleteOne({ _id: req.params.clientId })
+    .then(client => res.json(client))
+    .catch((err) => handleError(err, res))
+}
 
-function getOneOrderByClient () {}
+function updateClient (req, res) {
+  Client
+    .findByIdAndUpdate(req.params.clientId, req.body, { new: true })
+    .then(client => res.json(client))
+    .catch((err) => handleError(err, res))
+}
 
-function deleteOneOrderByClient () {}
+function getAllOrdersByClient (req, res) {
+  Client
+    .findById(req.params.clientId)
+    .then(client => res.json(client.orders))
+    .catch((err) => handleError(err, res))
+}
+
+function getOneOrderByClient (req, res) {
+  Client
+    .findById(req.params.clientId)
+    .then(client => res.json(client.orders))
+    .then(orders => res.json(req.params.orderId))
+    .catch((err) => handleError(err, res))
+}

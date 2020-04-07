@@ -7,7 +7,7 @@ const clientsRouter = require('./clients.router')
 // const meRouter = require('./me.router')
 
 router.use('/auth', authRouter)
-// router.use('/me', authUser, meRouter)
+// router.use('/me', meRouter)
 router.use('/users', authUser, usersRouter)
 router.use('/clients', clientsRouter)
 
