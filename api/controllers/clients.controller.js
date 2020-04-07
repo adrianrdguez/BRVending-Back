@@ -2,8 +2,8 @@ const Client = require('../models/client.model.js')
 const { handleError } = require('../utils')
 
 module.exports = {
-  getAllclients,
-  getOneclient,
+  getAllClients,
+  getOneClient,
   createClient,
   deleteClient,
   updateClient,
@@ -11,14 +11,14 @@ module.exports = {
   getOneOrderByClient
 }
 
-function getAllclients (req, res) {
+function getAllClients (req, res) {
   Client
     .find()
     .then((clients) => res.json(clients))
     .catch((err) => handleError(err, res))
 }
 
-function getOneclient (req, res) {
+function getOneClient (req, res) {
   Client
     .findById(req.params.clientId)
     .then((client) => res.json(client))
