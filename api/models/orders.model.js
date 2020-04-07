@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const orderSchema = new mongoose.Schema({
   client: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'client',
+    ref: 'clients',
     required: true
   }],
   totalPrice: Number,
@@ -15,5 +15,5 @@ const orderSchema = new mongoose.Schema({
   }
 })
 
-const orderModel = mongoose.model('user', orderSchema)
-module.exports = orderModel
+const ordersModel = mongoose.model('orders', orderSchema)
+module.exports = ordersModel

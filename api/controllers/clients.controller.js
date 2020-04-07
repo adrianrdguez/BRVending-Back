@@ -7,8 +7,10 @@ module.exports = {
   createClient,
   deleteClient,
   updateClient,
+  getOneOrderByClient,
   getAllOrdersByClient,
-  getOneOrderByClient
+  deleteOneOrderByClient
+
 }
 
 function getAllClients (req, res) {
@@ -48,7 +50,7 @@ function updateClient (req, res) {
 function getAllOrdersByClient (req, res) {
   Client
     .findById(req.params.clientId)
-    .then(client => res.json(client.orders))
+    .then((client) => res.json(client.orders))
     .catch((err) => handleError(err, res))
 }
 
@@ -58,4 +60,7 @@ function getOneOrderByClient (req, res) {
     .then(client => res.json(client.orders))
     .then(orders => res.json(req.params.orderId))
     .catch((err) => handleError(err, res))
+}
+function deleteOneOrderByClient (req, res) {
+
 }

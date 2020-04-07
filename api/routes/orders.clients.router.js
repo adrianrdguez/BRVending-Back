@@ -6,8 +6,8 @@ const {
   deleteOneOrderByClient
 } = require('../controllers/clients.controller')
 
-router.get('/:clientId/orders', getAllOrdersByClient)
-router.get('/:clientId/orders/:ordersId', getOneOrderByClient)
-router.delete('/:clientId/orders/:ordersId', deleteOneOrderByClient)
+router.get('/', getAllOrdersByClient)
+router.get('/:ordersId', getOneOrderByClient)
+router.delete('/:ordersId', deleteOneOrderByClient)
 
 module.exports = router
