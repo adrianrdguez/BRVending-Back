@@ -22,13 +22,12 @@ function signup (req, res) {
         { expiresIn: '1w' }
       )
 
-      return res.json({ token: token, email: req.body.email, firstName: req.body.firstName })
+      return res.json({ token: token, email: req.body.email, name: req.body.name })
     })
     .catch((err) => {
       res.status(403).json({ error: err })
     })
 }
-
 function login (req, res) {
   UserModel
     .findOne({ email: req.body.email })
@@ -45,7 +44,7 @@ function login (req, res) {
           { expiresIn: '1h' }
         )
 
-        return res.json({ token: token, email: user.email, firstName: user.firstName, photoURL: user.photoURL })
+        return res.json({ token: token, email: user.emai })
       })
     })
     .catch(err => handleError(err, res))
