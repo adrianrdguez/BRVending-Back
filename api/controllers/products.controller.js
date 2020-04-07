@@ -13,7 +13,12 @@ function getAllProducts (req, res) {
     .find()
     .populate('category', { name: 1, _id: 0 })
     .then((products) => {
-      res.json(products)
+      res.json(products.map(p => {
+        return {
+          ...p._doc,
+          category: p.category.map(c => c.name)
+        }
+      }))
     })
     .catch((err) => handleError(err, res))
 }
