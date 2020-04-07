@@ -1,17 +1,17 @@
 const router = require('express').Router()
+const { authUser } = require('../utils/index')
 
+const usersRouter = require('./user.router')
 const authRouter = require('./auth.router')
-const commercialRouter = require('./commercial.router')
 const clientsRouter = require('./clients.router')
+// const meRouter = require('./me.router')
 
-const { authCommercial } = require('../utils') // Authenticated Route
-
-router.use('/commercials', commercialRouter)
 router.use('/auth', authRouter)
-
+// router.use('/me', authUser, meRouter)
+router.use('/users', authUser, usersRouter)
 router.use('/clients', clientsRouter)
 
-router.get('/whoami', authCommercial, (req, res) => {
+router.get('/whoami', authUser, (req, res) => {
   res.send(`hi there! ${res.locals.user.name}`)
 })
 

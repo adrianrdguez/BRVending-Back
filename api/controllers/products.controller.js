@@ -2,25 +2,24 @@ const ProductModel = require('../models/products.model')
 const { handleError } = require('../utils')
 
 module.exports = {
-    getAllProducts,
-    getOneProduct,
-    createProduct,
-    deleteProduct
+  getAllProducts,
+  getOneProduct,
+  createProduct,
+  deleteProduct
 }
 
-function getAllProducts() {
-
-}
-
-function getOneProduct() {
+function getAllProducts () {
 
 }
 
-function createProduct() {
+function getOneProduct () {
 
 }
 
-function deleteProduct() {
+function createProduct () {
 
 }
 
+function deleteProduct () {
+
+}

@@ -1,13 +1,13 @@
 const router = require('express').Router()
 
 const {
-    getAllclients,
-    getOneclient,
-    createClient,
-    deleteClient,
-    getAllOrdersByClient,
-    getOneOrderByClient,
-    deleteOneOrderByClient
+  getAllclients,
+  getOneclient,
+  createClient,
+  deleteClient,
+  getAllOrdersByClient,
+  getOneOrderByClient,
+  deleteOneOrderByClient
 } = require('../controllers/clients.controller')
 
 router.get('/', getAllclients)
