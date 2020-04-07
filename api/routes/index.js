@@ -12,6 +12,7 @@ router.use('/me/clients', authUser, clientsRouter)
 router.use('/me/clients/:clientId/orders', authUser, orderRouter)
 router.use('/auth', authRouter)
 router.use('/products', productsRouter)
+//router.use('/products/:productId', productsRouter)
 // router.use('/me', meRouter)
 // router.use('/users', authUser, usersRouter)
 
