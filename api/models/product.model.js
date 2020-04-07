@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
   },
   category: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'categories',
+    ref: 'category',
     required: true
   }],
   photo_url: String,
@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema({
     default: Date.now()
   },
   stock: {
-    type: String,
+    type: Number,
     required: true
   }
 })
