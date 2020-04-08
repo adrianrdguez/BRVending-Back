@@ -5,7 +5,8 @@ module.exports = {
   getAllProducts,
   getOneProduct,
   createProduct,
-  deleteProduct
+  deleteProduct,
+  updateProduct
 }
 
 function getAllProducts (req, res) {
@@ -42,5 +43,12 @@ function deleteProduct (req, res) {
   ProductModel
     .findByIdAndDelete(req.params.productId)
     .then((product) => res.json(product))
+    .catch((err) => handleError(err, res))
+}
+
+function updateProduct (req, res) {
+  ProductModel
+    .findByIdAndUpdate(req.params.productId, req.body, { new: true })
+    .then(updateProduct => res.json(updateProduct))
     .catch((err) => handleError(err, res))
 }
