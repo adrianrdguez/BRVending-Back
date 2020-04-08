@@ -1,13 +1,17 @@
 const mongoose = require('mongoose')
 
 const orderSchema = new mongoose.Schema({
-  client: [{
+  clients: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'clients',
     required: true
   }],
   totalPrice: Number,
-  products: Array,
+  products: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'products',
+    required: true
+  }],
   is_sent: { Boolean, default: false },
   createdAt: {
     type: Number,

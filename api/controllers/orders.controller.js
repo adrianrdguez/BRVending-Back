@@ -12,6 +12,8 @@ module.exports = {
 function getAllOrders (req, res) {
   Order
     .find()
+    .populate('products')
+    .populate('clients')
     .then((orders) => res.json(orders))
     .catch((err) => handleError(err, res))
 }
@@ -19,6 +21,8 @@ function getAllOrders (req, res) {
 function getOrderById (req, res) {
   Order
     .findById(req.params.orderId)
+    .populate('products')
+    .populate('clients')
     .then((order) => res.json(order))
     .catch((err) => handleError(err, res))
 }
