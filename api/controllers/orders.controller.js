@@ -1,4 +1,5 @@
 const Order = require('../models/orders.model.js')
+const { handleError } = require('../utils')
 
 module.exports = {
   getAllOrders,
@@ -8,22 +9,37 @@ module.exports = {
   deleteOrder
 }
 
-function getAllOrders () {
-
+function getAllOrders (req, res) {
+  Order
+    .find()
+    .then((orders) => res.json(orders))
+    .catch((err) => handleError(err, res))
 }
 
-function getOrderById () {
-
+function getOrderById (req, res) {
+  Order
+    .findById(req.params.orderId)
+    .then((order) => res.json(order))
+    .catch((err) => handleError(err, res))
 }
 
-function createOrder () {
-
+function createOrder (req, res) {
+  Order
+    .create(req.body)
+    .then(order => res.json(order))
+    .catch((err) => handleError(err, res))
 }
 
-function updateOrder () {
-
+function updateOrder (req, res) {
+  Order
+    .findByIdAndUpdate(req.params.orderId, req.body, { new: true })
+    .then(updatedOrder => res.json(updatedOrder))
+    .catch((err) => handleError(err, res))
 }
 
-function deleteOrder () {
-
+function deleteOrder (req, res) {
+  Order
+    .findByIdAndDelete(req.params.orderId)
+    .then((orderDeleted) => res.json(orderDeleted))
+    .catch((err) => handleError(err, res))
 }

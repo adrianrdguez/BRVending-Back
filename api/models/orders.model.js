@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
     required: true
   }],
   totalPrice: Number,
-  products: String,
+  products: Array,
   is_sent: { Boolean, default: false },
   createdAt: {
     type: Number,

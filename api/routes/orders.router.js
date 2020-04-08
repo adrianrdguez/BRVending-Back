@@ -11,7 +11,7 @@ const {
 router.get('/', getAllOrders)
 router.get('/:orderId', getOrderById)
 router.post('/', createOrder)
-router.put('/:id', updateOrder)
-router.delete('/:id', deleteOrder)
+router.put('/:orderId', updateOrder)
+router.delete('/:orderId', deleteOrder)
 
 module.exports = router
