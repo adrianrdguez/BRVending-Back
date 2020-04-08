@@ -8,7 +8,7 @@ const productsRouter = require('./products.router')
 const ordersRouter = require('./orders.router')
 const categoriesRouter = require('./categories.router')
 
-router.use('/me/clients', authUser, clientsRouter)
+router.use('/me/clients', clientsRouter)
 router.use('/auth', authRouter)
 router.use('/products', productsRouter)
 router.use('/categories', categoriesRouter)

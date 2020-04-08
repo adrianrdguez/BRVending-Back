@@ -21,7 +21,6 @@ function signup (req, res) {
         process.env.SECRET, // TAKE SECRET KEY FROM .ENV
         { expiresIn: '1w' }
       )
-
       return res.json({ token: token, email: req.body.email, name: req.body.name })
     })
     .catch((err) => {
@@ -44,7 +43,7 @@ function login (req, res) {
           { expiresIn: '1h' }
         )
 
-        return res.json({ token: token, email: user.emai })
+        return res.json({ token: token, email: user.email })
       })
     })
     .catch(err => handleError(err, res))

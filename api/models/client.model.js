@@ -32,6 +32,10 @@ const clientSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  address: {
+    type: String,
+    required: true
+  },
   zipcode: {
     type: Number,
     required: true
