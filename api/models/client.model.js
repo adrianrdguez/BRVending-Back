@@ -47,6 +47,10 @@ const clientSchema = new mongoose.Schema({
   orders: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'orders'
+  },
+  client_number: {
+    type: Number,
+    required: true,
   }
 })
 
